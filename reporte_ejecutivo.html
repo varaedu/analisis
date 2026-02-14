@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Comparativo: EBS SXM vs M3 CARGO SA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .period {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h3 {
+            color: #16a085;
+            font-size: 1.4em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .company-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+        
+        .company-card.ebs {
+            border-left: 5px solid #3498db;
+        }
+        
+        .company-card.m3 {
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .company-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .company-card.ebs .company-title {
+            color: #3498db;
+        }
+        
+        .company-card.m3 .company-title {
+            color: #e74c3c;
+        }
+        
+        .destination {
+            background-color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .metric-value {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .insights {
+            background-color: #e8f8f5;
+            border-left: 5px solid #16a085;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .insights h3 {
+            color: #16a085;
+            margin-top: 0;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 5px solid #f39c12;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning h3 {
+            color: #f39c12;
+            margin-top: 0;
+        }
+        
+        .recommendations {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .recommendations h3 {
+            color: #2196f3;
+            margin-top: 0;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .neutral {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .summary-box h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            margin-top: 0;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .kpi-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .kpi-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .kpi-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .kpi-subvalue {
+            font-size: 0.9em;
+            color: #95a5a6;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Análisis Comparativo de Clientes</h1>
+            <div class="subtitle">EBS SXM vs M3 CARGO SA</div>
+        </header>
+        
+        <div class="period">
+            📅 Período de Análisis: 8 de Septiembre 2025 - 11 de Febrero 2026 (157 días)
+        </div>
+        
+        <div class="summary-box">
+            <h2>🎯 Resumen Ejecutivo</h2>
+            <p style="margin: 15px 0; font-size: 1.1em;">
+                Análisis de <strong>15,354 paquetes</strong> totalizando <strong>30,785.77 kg</strong> de carga procesada 
+                para dos clientes estratégicos con destinos diferentes. EBS SXM representa el <strong>54.1%</strong> del volumen 
+                mientras M3 CARGO SA el <strong>45.9%</strong>, pero con perfiles operativos claramente diferenciados.
+            </p>
+        </div>
+        
+        <h2>📈 KPIs Principales</h2>
+        
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Paquetes</div>
+                <div class="kpi-value">15,354</div>
+                <div class="kpi-subvalue">97.9 paq/día promedio</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Peso Total</div>
+                <div class="kpi-value">30.8</div>
+                <div class="kpi-subvalue">toneladas procesadas</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Clientes Activos</div>
+                <div class="kpi-value">214</div>
+                <div class="kpi-subvalue">202 EBS + 12 M3</div>
+            </div>
+        </div>
+        
+        <h2>🏢 Comparativa por Empresa</h2>
+        
+        <div class="comparison-grid">
+            <div class="company-card ebs">
+                <div class="company-title">🔵 EBS SXM</div>
+                <div class="destination">🏝️ Destino: Saint Martin</div>
+                
+                <div class="metric">
+                    <span class="metric-label">Total Paquetes:</span>
+                    <span class="metric-value">8,310</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Peso Total:</span>
+                    <span class="metric-value">12,782.16 kg</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Peso Promedio:</span>
+                    <span class="metric-value">1.54 kg</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Volumen Diario:</span>
+                    <span class="metric-value">52.9 paq/día</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Clientes Únicos:</span>
+                    <span class="metric-value">202 clientes</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Transportistas:</span>
+                    <span class="metric-value">16 carriers</span>
+                </div>
+            </div>
+            
+            <div class="company-card m3">
+                <div class="company-title">🔴 M3 CARGO SA</div>
+                <div class="destination">🇬🇹 Destino: Guatemala</div>
+                
+                <div class="metric">
+                    <span class="metric-label">Total Paquetes:</span>
+                    <span class="metric-value">7,044</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Peso Total:</span>
+                    <span class="metric-value">18,003.61 kg</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Peso Promedio:</span>
+                    <span class="metric-value">2.56 kg</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Volumen Diario:</span>
+                    <span class="metric-value">46.0 paq/día</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Clientes Únicos:</span>
+                    <span class="metric-value">12 clientes</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Transportistas:</span>
+                    <span class="metric-value">15 carriers</span>
+                </div>
+            </div>
+        </div>
+        
+        <h2>💡 Hallazgos Clave</h2>
+        
+        <div class="insights">
+            <h3><span class="icon">✅</span>Fortalezas Identificadas</h3>
+            <ul>
+                <li><strong>EBS SXM:</strong> Base de clientes altamente diversificada con <span class="highlight">202 clientes</span>, reduciendo significativamente el riesgo de dependencia</li>
+                <li><strong>EBS SXM:</strong> Volumen constante con <span class="highlight">52.9 paquetes/día</span>, indicando operación estable y predecible</li>
+                <li><strong>M3 CARGO SA:</strong> Paquetes <span class="highlight">66% más pesados</span> en promedio (2.56 kg vs 1.54 kg), potencialmente más rentables por unidad</li>
+                <li><strong>M3 CARGO SA:</strong> Mayor peso total procesado (<span class="highlight">18 toneladas</span>) a pesar de menor cantidad de paquetes</li>
+                <li><strong>Ambas:</strong> Amazon como principal transportista (39% y 56% respectivamente), aprovechando economías de escala</li>
+            </ul>
+        </div>
+        
+        <div class="warning">
+            <h3><span class="icon">⚠️</span>Riesgos y Áreas de Atención</h3>
+            <ul>
+                <li><strong class="negative">CRÍTICO - M3 CARGO SA:</strong> Concentración extrema del negocio - <span class="highlight">Top 5 clientes = 97.2% del volumen</span>. La pérdida de 1-2 clientes principales podría ser catastrófica</li>
+                <li><strong class="negative">M3 CARGO SA:</strong> Base de solo 12 clientes totales representa alto riesgo de volatilidad y dependencia</li>
+                <li><strong class="neutral">EBS SXM:</strong> Aunque mejor diversificada, el Top 5 aún representa 22.9% del volumen - monitorear relaciones clave</li>
+                <li><strong class="neutral">Ambas:</strong> Alta dependencia de Top 3 transportistas (73% EBS, 85% M3) - considerar diversificación para mayor resiliencia</li>
+                <li><strong>Volatilidad:</strong> Desviación estándar semanal elevada (145 y 129 paquetes) indica fluctuaciones significativas en demanda</li>
+            </ul>
+        </div>
+        
+        <h2>📊 Análisis de Concentración de Negocio</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Métrica de Riesgo</th>
+                    <th>EBS SXM</th>
+                    <th>M3 CARGO SA</th>
+                    <th>Evaluación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Top 5 clientes (% volumen)</td>
+                    <td class="positive">22.9%</td>
+                    <td class="negative">97.2%</td>
+                    <td>M3 tiene altísima concentración</td>
+                </tr>
+                <tr>
+                    <td>Top 3 transportistas (% volumen)</td>
+                    <td>72.7%</td>
+                    <td>84.7%</td>
+                    <td>Ambos dependientes de pocos carriers</td>
+                </tr>
+                <tr>
+                    <td>Diversificación de clientes</td>
+                    <td class="positive">202 clientes</td>
+                    <td class="negative">12 clientes</td>
+                    <td>EBS mucho más resiliente</td>
+                </tr>
+                <tr>
+                    <td>Volatilidad semanal (σ)</td>
+                    <td>144.8 paq</td>
+                    <td>128.9 paq</td>
+                    <td>Ambos con fluctuaciones altas</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>🚚 Análisis de Transportistas</h2>
+        
+        <h3>EBS SXM - Top 5 Carriers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Transportista</th>
+                    <th>Paquetes</th>
+                    <th>% del Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AMAZON</td>
+                    <td>3,221</td>
+                    <td>38.8%</td>
+                </tr>
+                <tr>
+                    <td>USPS</td>
+                    <td>2,081</td>
+                    <td>25.0%</td>
+                </tr>
+                <tr>
+                    <td>UPS</td>
+                    <td>742</td>
+                    <td>8.9%</td>
+                </tr>
+                <tr>
+                    <td>GOFOEXPRESS</td>
+                    <td>582</td>
+                    <td>7.0%</td>
+                </tr>
+                <tr>
+                    <td>OTRO</td>
+                    <td>580</td>
+                    <td>7.0%</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>M3 CARGO SA - Top 5 Carriers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Transportista</th>
+                    <th>Paquetes</th>
+                    <th>% del Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AMAZON</td>
+                    <td>3,968</td>
+                    <td>56.3%</td>
+                </tr>
+                <tr>
+                    <td>UPS</td>
+                    <td>1,200</td>
+                    <td>17.0%</td>
+                </tr>
+                <tr>
+                    <td>USPS</td>
+                    <td>797</td>
+                    <td>11.3%</td>
+                </tr>
+                <tr>
+                    <td>FEDEX</td>
+                    <td>364</td>
+                    <td>5.2%</td>
+                </tr>
+                <tr>
+                    <td>OTRO</td>
+                    <td>292</td>
+                    <td>4.1%</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>📦 Composición de Tipos de Paquetes</h2>
+        
+        <div class="comparison-grid">
+            <div>
+                <h3>EBS SXM</h3>
+                <ul>
+                    <li><strong>Bolsas:</strong> 4,774 (57.4%)</li>
+                    <li><strong>Paquete Small:</strong> 1,935 (23.3%)</li>
+                    <li><strong>Paquete Medium:</strong> 1,308 (15.7%)</li>
+                    <li><strong>Paquete Large:</strong> 225 (2.7%)</li>
+                    <li><strong>Otros:</strong> 68 (0.8%)</li>
+                </ul>
+            </div>
+            <div>
+                <h3>M3 CARGO SA</h3>
+                <ul>
+                    <li><strong>Paquete Small:</strong> 4,154 (59.0%)</li>
+                    <li><strong>Bolsas:</strong> 1,722 (24.4%)</li>
+                    <li><strong>Paquete Medium:</strong> 859 (12.2%)</li>
+                    <li><strong>Paquete Large:</strong> 216 (3.1%)</li>
+                    <li><strong>Otros:</strong> 93 (1.3%)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="insights">
+            <h3>Perfil de Carga</h3>
+            <p><strong>EBS SXM:</strong> Dominado por bolsas (57%), indicando envíos más ligeros y posiblemente documentos o artículos pequeños. Perfil de consumidor final.</p>
+            <p><strong>M3 CARGO SA:</strong> Mayoría son paquetes clasificados (59% Small), sugiere operación más estandarizada, posiblemente B2B o consolidación comercial.</p>
+        </div>
+        
+        <h2>🎯 Recomendaciones Estratégicas</h2>
+        
+        <div class="recommendations">
+            <h3><span class="icon">🔴</span>Prioridad ALTA - M3 CARGO SA</h3>
+            <ul>
+                <li><strong>URGENTE:</strong> Desarrollar plan de diversificación de clientes. Con 97% del volumen en 5 clientes, cualquier pérdida sería crítica. Objetivo: reducir a <70% en 6 meses</li>
+                <li><strong>Estrategia de crecimiento:</strong> Expandir base de clientes de 12 a mínimo 25-30 en próximos 6 meses para reducir riesgo sistémico</li>
+                <li><strong>Análisis de rentabilidad:</strong> Dado el mayor peso promedio (2.56kg), validar que los márgenes justifican la concentración de riesgo</li>
+                <li><strong>SLAs y contratos:</strong> Establecer contratos de largo plazo con clientes principales para asegurar volumen</li>
+                <li><strong>Pipeline comercial:</strong> Identificar prospectos similares en perfil (Guatemala, volumen medio-alto) para mitigar dependencia</li>
+            </ul>
+        </div>
+        
+        <div class="recommendations">
+            <h3><span class="icon">🟡</span>Prioridad MEDIA - EBS SXM</h3>
+            <ul>
+                <li><strong>Optimización de volumen:</strong> Con 202 clientes pero Top 5 = 23%, existe potencial para crecer cuentas medianas. Identificar 10-15 clientes con potencial de 2x-3x crecimiento</li>
+                <li><strong>Gestión de top clients:</strong> Implementar programa VIP para Top 20 clientes (monitoreo mensual, SLA premium, comunicación proactiva)</li>
+                <li><strong>Análisis de churn:</strong> Revisar clientes inactivos o con volumen decreciente. De 202 clientes, ¿cuántos están realmente activos mes a mes?</li>
+                <li><strong>Eficiencia operativa:</strong> Con 52.9 paq/día constante, evaluar si hay capacidad para absorber crecimiento sin inversión en infraestructura</li>
+            </ul>
+        </div>
+        
+        <div class="recommendations">
+            <h3><span class="icon">🔵</span>Recomendaciones Generales - Ambas Empresas</h3>
+            <ul>
+                <li><strong>Diversificación de carriers:</strong> 73-85% del volumen en Top 3 transportistas crea riesgo operativo. Negociar con 2-3 carriers adicionales como backup (especialmente para rutas críticas)</li>
+                <li><strong>Análisis de costos por carrier:</strong> Con Amazon siendo dominante (39% y 56%), validar que sus tarifas son competitivas vs UPS/USPS. Considerar renegociación de volumen</li>
+                <li><strong>Gestión de volatilidad:</strong> Desviación estándar de 129-145 paquetes/semana indica alta variabilidad. Implementar forecasting para mejor planificación de capacidad</li>
+                <li><strong>Rentabilidad por segmento:</strong> Analizar margen por tipo de paquete. Los paquetes >5kg (6% del volumen) pueden justificar tarifas premium</li>
+                <li><strong>Dashboard operativo:</strong> Implementar KPIs semanales para detectar tendencias tempranamente (volumen, peso, mix de clientes, carrier performance)</li>
+                <li><strong>Benchmarking:</strong> Comparar peso promedio y estructura de costos EBS vs M3 para identificar oportunidades de mejora en pricing o eficiencia</li>
+            </ul>
+        </div>
+        
+        <h2>📉 Análisis de Tendencias</h2>
+        
+        <div class="insights">
+            <h3>Observaciones Temporales</h3>
+            <ul>
+                <li><strong>Estacionalidad:</strong> Revisar gráficas de tendencia mensual/semanal para identificar patrones (cierres de mes, temporadas altas, etc.)</li>
+                <li><strong>Días de la semana:</strong> Analizar días con mayor/menor actividad para optimizar staffing y operaciones</li>
+                <li><strong>Crecimiento:</strong> Evaluar tasa de crecimiento mensual - ¿están creciendo, estables, o decreciendo?</li>
+                <li><strong>Comparativa Sep-Feb:</strong> Período de 5+ meses permite identificar si hay ciclos o tendencias sostenidas</li>
+            </ul>
+        </div>
+        
+        <h2>💰 Implicaciones Financieras</h2>
+        
+        <div class="warning">
+            <h3>Consideraciones de Riesgo-Retorno</h3>
+            <p><strong>M3 CARGO SA:</strong> Aunque procesa más peso total (58% del peso vs 42% de EBS), su extrema concentración de clientes representa un perfil de riesgo MUY ALTO. Cualquier estrategia comercial o de pricing debe considerar este factor. Potencial acción: ajustar pricing para reflejar riesgo, o invertir agresivamente en diversificación.</p>
+            
+            <p><strong>EBS SXM:</strong> Modelo más estable y escalable con 202 clientes. Riesgo BAJO-MEDIO. Oportunidad: capitalizar la estabilidad para crecer volumen con clientes existentes mediante cross-selling o upselling de servicios.</p>
+        </div>
+        
+        <h2>🎬 Próximos Pasos Recomendados</h2>
+        
+        <div class="recommendations">
+            <h3>Plan de Acción 30-60-90 días</h3>
+            <ul>
+                <li><strong>Primeros 30 días:</strong>
+                    <ul>
+                        <li>Reunión con Top 5 clientes de M3 para entender necesidades y asegurar renovación</li>
+                        <li>Análisis detallado de márgenes por cliente y carrier</li>
+                        <li>Implementar dashboard de KPIs semanales</li>
+                        <li>Identificar 20 prospectos para M3 (diversificación) y 10 para EBS (crecimiento)</li>
+                    </ul>
+                </li>
+                <li><strong>60 días:</strong>
+                    <ul>
+                        <li>Lanzar campaña de adquisición para M3 (target: 5+ nuevos clientes)</li>
+                        <li>Negociar contratos/SLAs con clientes clave de ambas empresas</li>
+                        <li>Evaluar y negociar con carriers alternativos</li>
+                        <li>Análisis de churn y retención EBS</li>
+                    </ul>
+                </li>
+                <li><strong>90 días:</strong>
+                    <ul>
+                        <li>Revisar progreso de diversificación M3 (objetivo: reducir Top 5 de 97% a <85%)</li>
+                        <li>Implementar programa de crecimiento para clientes medios de EBS</li>
+                        <li>Optimizar mix de carriers basado en análisis de costos</li>
+                        <li>Evaluación trimestral completa de ambas cuentas</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Documento generado:</strong> Febrero 2026</p>
+            <p>Para consultas adicionales o análisis profundos de métricas específicas, referirse a los dashboards gráficos adjuntos.</p>
+        </div>
+    </div>
+</body>
+</html>
